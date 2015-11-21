@@ -99,7 +99,7 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         Location *donor = [Location new];
         donor.locationId = responseObject[@"log"][@"donor_id"];
-        [log.parentRoute.donors addObject:log];
+        [log.parentRoute.donors addObject:donor];
         
         for (NSString *str in responseObject[@"log"][@"recipient_ids"]){
             Location *recipient = [Location new];
@@ -107,11 +107,29 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
             [log.parentRoute.recipients addObject:recipient];
         }
         
-        completion(nil, log);
-        
         [log inflateWithDictionary:responseObject];
         
+        completion(nil, log);
+        
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        completion(error, nil);
+    }];
+}
+
++ (void) fillLocation:(Location *)location withCompletion:(void(^)(NSError *error, Location *location))completion{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSString * user = [[NSUserDefaults standardUserDefaults] objectForKey:currentUserDefaultsKey];
+    NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:tokenDefaultsKey];
+    NSString *url = [NSString stringWithFormat:@"%@/location/%@.json?volunteer_email=%@&volunteer_token=%@", baseURL, location.locationId, user, token];
+    
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        [location inflateWithDictionary:responseObject];
+        completion(nil, location);
+    }
+    failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         completion(error, nil);
     }];
 }

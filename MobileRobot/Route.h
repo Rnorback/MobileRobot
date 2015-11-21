@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+@class Location;
+@class Log;
 
 @interface Route : NSObject
 
+@property NSString* routeId; //schedule chain id... currently not>used beause it isn't exposed via the API
 
-@property NSString* routeId; //schedule chain id... currently not used beause it isn't exposed via the API
+@property NSMutableArray <Location*> *donors;
+@property NSMutableArray <Location*> *recipients;
 
-@property NSMutableArray *donors;
-@property NSMutableArray *recipients;
-
-@property NSMutableArray *logs;
+@property NSMutableArray <Log*> *logs;
 
 
 @end
