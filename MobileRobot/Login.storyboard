@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AW2-jW-hVs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AW2-jW-hVs">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -12,7 +12,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VEc-G5-T2d">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="iOG-s7-oEp" kind="relationship" relationship="rootViewController" id="j65-qd-hFV"/>
@@ -36,7 +35,6 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbK-Ue-Wnt">
                                 <rect key="frame" x="73" y="288" width="41" height="21"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Fcr-ZN-vog"/>
                                     <constraint firstAttribute="width" constant="41" id="Sfz-eM-1BH"/>
@@ -47,7 +45,6 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8d-wn-yZk">
                                 <rect key="frame" x="73" y="370" width="74" height="21"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="74" id="PUA-25-P3N"/>
                                     <constraint firstAttribute="height" constant="21" id="hyV-cS-nGh"/>
@@ -58,7 +55,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihA-ta-kcr">
                                 <rect key="frame" x="150" y="537" width="75" height="43"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="SRn-7g-byn"/>
                                     <constraint firstAttribute="height" constant="43" id="c10-fO-enq"/>
@@ -71,7 +67,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65Z-M0-nD6">
                                 <rect key="frame" x="206" y="424" width="100" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Lost Password"/>
                                 <connections>
                                     <action selector="lostPasswordButtonPressed:" destination="iOG-s7-oEp" eventType="touchUpInside" id="cAt-zz-Jv6"/>
@@ -79,15 +74,12 @@
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="TVi-uQ-QWK">
                                 <rect key="frame" x="178" y="250" width="20" height="20"/>
-                                <animations/>
                             </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BFRlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tMx-Xj-Ezk">
                                 <rect key="frame" x="107" y="81" width="161" height="161"/>
-                                <animations/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="lkloberg@gmail.com" borderStyle="line" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LAW-F0-YiI">
                                 <rect key="frame" x="73" y="312" width="233" height="30"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ZS0-K9-FoS"/>
                                     <constraint firstAttribute="width" constant="233" id="ba0-45-0Qw"/>
@@ -97,7 +89,6 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="8cycles8" borderStyle="line" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oBF-i8-CUs">
                                 <rect key="frame" x="73" y="394" width="233" height="30"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="233" id="30D-KG-RyQ"/>
                                     <constraint firstAttribute="height" constant="30" id="br1-3z-6en"/>
@@ -106,7 +97,6 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="XbK-Ue-Wnt" firstAttribute="top" secondItem="TVi-uQ-QWK" secondAttribute="bottom" constant="18" id="2F2-sr-xu5"/>
