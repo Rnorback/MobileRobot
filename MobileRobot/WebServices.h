@@ -10,5 +10,5 @@
 #import <Foundation/Foundation.h>
 
 @interface WebServices : NSObject
-
+    + (void) loginWithUsername:(NSString*)username andPassword:(NSString*)password withCompletion:(void (^)(NSError *error))completion;
 @end

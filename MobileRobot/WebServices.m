@@ -24,12 +24,16 @@ static const NSString *tokenDefaultsKey = @"com.BFR.logintokenkey";
     
     [manager POST:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
+        NSLog(@"The response object:%@",responseObject);
+        
+        completion(nil);
+        
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         
     }];
 }
 
-+ (void) listRoutesForCurrentUserWithCompletion{
++ (void) listRoutesForCurrentUserWithCompletion:({
     
 }
 

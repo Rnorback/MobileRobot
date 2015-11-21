@@ -22,10 +22,10 @@
             </objects>
             <point key="canvasLocation" x="-741" y="131"/>
         </scene>
-        <!--Login View Controller-->
+        <!--LoginVC-->
         <scene sceneID="es0-7A-0oD">
             <objects>
-                <viewController id="iOG-s7-oEp" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController id="iOG-s7-oEp" customClass="LoginVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mbw-7J-NKY"/>
                         <viewControllerLayoutGuide type="bottom" id="Ho1-0z-4cF"/>
@@ -65,11 +65,17 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="iOG-s7-oEp" eventType="touchUpInside" id="WGB-hb-dYJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65Z-M0-nD6">
                                 <rect key="frame" x="206" y="424" width="100" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Lost Password"/>
+                                <connections>
+                                    <action selector="lostPasswordButtonPressed:" destination="iOG-s7-oEp" eventType="touchUpInside" id="cAt-zz-Jv6"/>
+                                </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="TVi-uQ-QWK">
                                 <rect key="frame" x="178" y="250" width="20" height="20"/>
@@ -79,7 +85,7 @@
                                 <rect key="frame" x="107" y="81" width="161" height="161"/>
                                 <animations/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LAW-F0-YiI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="lkloberg@gmail.com" borderStyle="line" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LAW-F0-YiI">
                                 <rect key="frame" x="73" y="312" width="233" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -89,7 +95,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oBF-i8-CUs">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="8cycles8" borderStyle="line" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oBF-i8-CUs">
                                 <rect key="frame" x="73" y="394" width="233" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -97,7 +103,7 @@
                                     <constraint firstAttribute="height" constant="30" id="br1-3z-6en"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <animations/>
@@ -124,6 +130,9 @@
                     <navigationItem key="navigationItem" id="H9C-xq-akr"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="TVi-uQ-QWK" id="aCr-ky-RsJ"/>
+                        <outlet property="emailTextField" destination="LAW-F0-YiI" id="ypY-GD-htN"/>
+                        <outlet property="passwordTextField" destination="oBF-i8-CUs" id="Mb3-Z3-Bkq"/>
                         <segue destination="qjr-gw-ALB" kind="show" identifier="routesSegue" id="4fS-gG-jR7"/>
                     </connections>
                 </viewController>

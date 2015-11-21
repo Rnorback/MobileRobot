@@ -7,12 +7,19 @@
 //
 
 #import "LoginVC.h"
+#import "WebServices.h"
+
+#define kLostPasswordAlertTag 1
 
 @interface LoginVC ()
+@property (strong, nonatomic) IBOutlet UITextField *emailTextField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
 @implementation LoginVC
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,6 +30,46 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)lostPasswordButtonPressed:(UIButton *)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reset Password"
+                                                    message:@"Enter your email to reset your password"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Next", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alert.tag = kLostPasswordAlertTag;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == kLostPasswordAlertTag) {
+        if (buttonIndex == 1) {
+            // The next button was pressed, send a password reset email
+            NSString *email = [alertView textFieldAtIndex:0].text;
+            [self emailSentAlert:email];
+        }
+    }
+}
+
+- (void)emailSentAlert:(NSString*)email {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Password Email Sent"
+                                                    message:[NSString stringWithFormat:@"An email was sent to %@ with instructions for resetting your password", email]
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+
+- (IBAction)loginButtonPressed:(UIButton *)sender {
+    [WebServices loginWithUsername:self.emailTextField.text andPassword:self.passwordTextField.text withCompletion:^(NSError *error) {
+        [self.activityIndicator stopAnimating];
+    }];
+    [self.activityIndicator startAnimating];
+}
+
+
 
 /*
 #pragma mark - Navigation
