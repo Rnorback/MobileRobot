@@ -119,13 +119,13 @@
     NSArray* typeIDs = @[@58, @59, @60, @61, @63, @98];
     for (int i = 0; i<self.textFields.count; i++){
         UITextField *field = self.textFields[i];
-        if (field.text){
+        if (field.text && field.text.length > 0 && ![[f numberFromString:field.text] isEqualToNumber:@0] ){
             FoodType *type = [FoodType new];
             type.foodTypeId = typeIDs[i];
-            NSNumber *n = [f numberFromString:field.text];
-            if (n){
-                [self.log addQuantity:n OfType:type];
-            }
+//            NSNumber *n = [f numberFromString:field.text];
+//            if (n){
+                [self.log addQuantity:field.text OfType:type];
+//            }
         }
     }
     

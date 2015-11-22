@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, ReasonWhyNotZero) {
 
 
 - (void) inflateWithDictionary:(NSDictionary*)d;
-- (void) addQuantity:(NSNumber*)qty OfType:(FoodType*)type;
+- (void) addQuantity:(NSString*)qty OfType:(FoodType*)type;
 - (void) markHoursSpent:(NSNumber*)hoursSpent;
 - (void) addWeighMethod:(NSNumber*)methodId;
 - (void) addWhyZero:(ReasonWhyNotZero)explanation;

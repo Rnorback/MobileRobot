@@ -116,7 +116,7 @@
     
 }
 
-- (void) addQuantity:(NSNumber*)qty OfType:(FoodType*)type{
+- (void) addQuantity:(NSString*)qty OfType:(FoodType*)type{
     NSMutableDictionary * parts = [NSMutableDictionary dictionaryWithDictionary:self.rawDictionary[@"log_parts"]];
     [parts setObject:@{@"food_type_id":type.foodTypeId, @"description":@"", @"weight":qty, @"count":@""}  forKey:[NSString stringWithFormat:@"new%ld", (long)[[NSDate date] timeIntervalSince1970]]];
     [_rawDictionary setObject:parts forKey:@"log_parts"];

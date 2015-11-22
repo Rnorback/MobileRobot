@@ -17,9 +17,9 @@
 
 @end
 
-@implementation InfoVC
-
-
+@implementation InfoVC{
+    InfoTableVC *childTableVC;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,6 +45,7 @@
 }
 
 - (IBAction)finishRouteTapped:(UIButton *)sender {
+    [childTableVC doneButtonPressed:sender];
 }
 
 - (IBAction)weighFoodTapped:(UIButton *)sender {
@@ -60,7 +61,8 @@
     // Pass the selected object to the new view controller.
     NSString *segueName = segue.identifier;
     if ([segueName  isEqual: @"infoEmbed"]) {
-        ((InfoVC*)segue.destinationViewController).route = self.route;
+        childTableVC = (InfoTableVC*)segue.destinationViewController;
+        childTableVC.route = self.route;
     } else if ([segueName isEqual: @"weighSegue"]) {
         ((WeighVC*)segue.destinationViewController).log = sender;
     }

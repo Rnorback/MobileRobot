@@ -72,8 +72,8 @@
     [super viewDidLoad];
     
     [self.tableView setContentInset:UIEdgeInsetsMake(-64,0,0,0)];
-    self.navigationController.navigationBarHidden = false;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
+//    self.navigationController.navigationBarHidden = false;
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
 }
 - (void)doneButtonPressed:(id)sender{
     Log * log = self.route.logs[0];
