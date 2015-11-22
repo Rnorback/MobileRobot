@@ -11,6 +11,7 @@
 
 #import "Route.h"
 #import "Location.h"
+#import "InfoVC.h"
 #import "InfoTableVC.h"
 
 @interface RoutesTableVC ()
@@ -89,7 +90,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ((InfoTableVC*)segue.destinationViewController).route = sender;
+    ((InfoVC*)segue.destinationViewController).route = sender;
 }
 
 @end

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		36C9933BE49E5596B2A2CABF /* libPods-MobileRobot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AB28DFC9D3DB973C9A5978 /* libPods-MobileRobot.a */; };
+		936C54CB1C02441E001C5813 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 936C54CA1C02441E001C5813 /* InfoVC.m */; };
+		936C54CD1C024A05001C5813 /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 936C54CC1C024A05001C5813 /* Info.storyboard */; };
 		93EBF1281C00FBBA00166E83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EBF1271C00FBBA00166E83 /* main.m */; };
 		93EBF12B1C00FBBA00166E83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EBF12A1C00FBBA00166E83 /* AppDelegate.m */; };
 		93EBF1331C00FBBA00166E83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93EBF1321C00FBBA00166E83 /* Assets.xcassets */; };
@@ -29,6 +31,9 @@
 
 /* Begin PBXFileReference section */
 		67B72DB934D7517EB8C05272 /* Pods-MobileRobot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileRobot.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileRobot/Pods-MobileRobot.release.xcconfig"; sourceTree = "<group>"; };
+		936C54C91C02441E001C5813 /* InfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoVC.h; sourceTree = "<group>"; };
+		936C54CA1C02441E001C5813 /* InfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoVC.m; sourceTree = "<group>"; };
+		936C54CC1C024A05001C5813 /* Info.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
 		93EBF1231C00FBBA00166E83 /* MobileRobot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileRobot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93EBF1271C00FBBA00166E83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		93EBF1291C00FBBA00166E83 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -141,6 +146,9 @@
 				93EBF1401C00FBF700166E83 /* RoutesTable.storyboard */,
 				93EBF1411C00FBF700166E83 /* RoutesTableVC.h */,
 				93EBF1421C00FBF700166E83 /* RoutesTableVC.m */,
+				936C54CC1C024A05001C5813 /* Info.storyboard */,
+				936C54C91C02441E001C5813 /* InfoVC.h */,
+				936C54CA1C02441E001C5813 /* InfoVC.m */,
 				93EBF1431C00FBF700166E83 /* InfoTable.storyboard */,
 				93EBF1441C00FBF700166E83 /* InfoTableVC.h */,
 				93EBF1451C00FBF700166E83 /* InfoTableVC.m */,
@@ -245,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93EBF1491C00FBF700166E83 /* Login.storyboard in Resources */,
+				936C54CD1C024A05001C5813 /* Info.storyboard in Resources */,
 				93EBF14F1C00FBF700166E83 /* Weigh.storyboard in Resources */,
 				93EBF14B1C00FBF700166E83 /* RoutesTable.storyboard in Resources */,
 				93EBF1361C00FBBA00166E83 /* LaunchScreen.storyboard in Resources */,
@@ -308,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				936C54CB1C02441E001C5813 /* InfoVC.m in Sources */,
 				93EBF14C1C00FBF700166E83 /* RoutesTableVC.m in Sources */,
 				A09A1FCD1C015A5C004E789F /* FoodType.m in Sources */,
 				A09A1FC31C011BD1004E789F /* Route.m in Sources */,
