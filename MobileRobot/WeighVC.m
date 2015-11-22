@@ -23,7 +23,19 @@
     // Do any additional setup after loading the view.
     
     self.navigationController.navigationBarHidden = false;
-    
+
+    for (NSString *key in [self.log.rawDictionary[@"log_parts"] allKeys]){
+        NSDictionary *part = self.log.rawDictionary[@"log_parts"][key];
+        [self setText:part[@"weight"] forTypeId:part[@"food_type_id"]];
+    }
+}
+
+- (void) setText:(NSString*)text forTypeId:(NSNumber*)type{
+    NSArray *lookup = @[@98, @63, @61, @60, @59, @58];
+    NSInteger i = [lookup indexOfObject:type];
+    if (i!=NSNotFound){
+        ((UITextField*)self.textFields[i]).text = text;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,7 +128,7 @@
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
     
-    NSArray* typeIDs = @[@58, @59, @60, @61, @63, @98];
+    NSArray* typeIDs = @[@98, @63, @61, @60, @59, @58];
     for (int i = 0; i<self.textFields.count; i++){
         UITextField *field = self.textFields[i];
         if (field.text && field.text.length > 0 && ![[f numberFromString:field.text] isEqualToNumber:@0] ){
