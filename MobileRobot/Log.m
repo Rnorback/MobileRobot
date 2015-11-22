@@ -131,7 +131,13 @@
 - (void) addWeighMethod:(NSNumber*)methodId{
     NSMutableDictionary *log = [NSMutableDictionary dictionaryWithDictionary:self.rawDictionary[@"log"]];
     [log setObject:methodId forKey:@"scale_type_id"];
+    [log setObject:@1 forKey:@"transport_type_id"];
     [_rawDictionary setObject:log forKey:@"log"];
+    
+    NSMutableDictionary *schedule = [NSMutableDictionary dictionaryWithDictionary:self.rawDictionary[@"schedule"]];
+    [schedule setObject:methodId forKey:@"scale_type_id"];
+    [schedule setObject:methodId forKey:@"transport_type_id"];
+    [_rawDictionary setObject:schedule forKey:@"schedule"];
 }
 
 - (void) addWhyZero:(ReasonWhyNotZero)explanation{
