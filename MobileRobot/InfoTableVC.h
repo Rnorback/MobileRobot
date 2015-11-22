@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 @class Route;
 
-@interface InfoTableVC : UITableViewController
+@interface InfoTableVC: UITableViewController
 @property Route* route;
+
+- (void)doneButtonPressed:(id)sender;
 @end

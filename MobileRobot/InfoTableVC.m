@@ -27,7 +27,7 @@
 -(float)expectedWidth{
     [self setNumberOfLines:1];
     
-    CGSize maximumLabelSize = CGSizeMake( CGFLOAT_MAX, CGRectGetWidth(self.bounds) );
+    CGSize maximumLabelSize = CGSizeMake(CGFLOAT_MAX, CGRectGetWidth(self.bounds) );
     
     CGSize expectedLabelSize = [[self text] sizeWithFont:[self font]
                                        constrainedToSize:maximumLabelSize
@@ -64,13 +64,16 @@
 
 @end
 
-@implementation InfoTableVC
+@implementation InfoTableVC {
+    UIButton *weighFoodButton;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBarHidden = false;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(-64,0,0,0)];
+//    self.navigationController.navigationBarHidden = false;
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
 }
 - (void)doneButtonPressed:(id)sender{
     Log * log = self.route.logs[0];
@@ -163,8 +166,8 @@
     self.dropoffFoodLbl.text = dropoff.foodStorageInfo;
     self.dropoffContactLbl.text = dropoff.onsiteContactInfo;
     self.dropoffExitLbl.text = dropoff.exitInfo;
-    
 }
+
 - (IBAction)weighFoodButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"weighSegue" sender:self.route.logs[0]];
 }
@@ -176,7 +179,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 #pragma mark - Navigation
 
