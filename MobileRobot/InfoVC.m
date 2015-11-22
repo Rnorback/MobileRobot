@@ -25,6 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = false;
+    self.title = @"Route Info";
     
     [self addButtonShadow:self.finishRouteButton];
     [self addButtonShadow:self.weighFoodButton];

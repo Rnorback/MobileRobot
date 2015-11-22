@@ -23,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Food Routes";
+    self.navigationItem.hidesBackButton = YES;
     
     [WebServices listRoutesForCurrentUserWithCompletion:^(NSError *error, NSArray *routes) {
         if (error){
@@ -34,7 +36,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBarHidden = true;
+    self.navigationController.navigationBarHidden = false;
 }
 
 

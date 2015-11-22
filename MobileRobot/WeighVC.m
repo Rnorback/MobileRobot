@@ -13,6 +13,7 @@
 @interface WeighVC ()
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *textFields;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *methodSelector;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -21,13 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.title = @"Weight Info";
     self.navigationController.navigationBarHidden = false;
 
     for (NSString *key in [self.log.rawDictionary[@"log_parts"] allKeys]){
         NSDictionary *part = self.log.rawDictionary[@"log_parts"][key];
         [self setText:part[@"weight"] forTypeId:part[@"food_type_id"]];
     }
+    [self.scrollView setContentInset:UIEdgeInsetsMake(-104,0,0,0)];
 }
 
 - (void) setText:(NSString*)text forTypeId:(NSNumber*)type{
