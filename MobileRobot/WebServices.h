@@ -9,9 +9,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class Route;
+
 @interface WebServices : NSObject
     + (void) loginWithUsername:(NSString*)username andPassword:(NSString*)password withCompletion:(void (^)(NSError *error))completion;
 
-    + (void) listRoutesForCurrentUserWithCompletion:(void(^)(NSError* error, NSArray *routes))completion;
+    + (void) listRoutesForCurrentUserWithCompletion:(void(^)(NSError* error, NSArray<Route*> *routes))completion;
 
 @end
