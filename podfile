@@ -4,4 +4,5 @@
 target 'MobileRobot' do
 pod 'AFNetworking'
 pod 'BlocksKit'
+pod 'IQKeyboardManager'
 end

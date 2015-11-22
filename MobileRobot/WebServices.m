@@ -12,6 +12,7 @@
 #import "Route.h"
 #import "Log.h"
 #import "Location.h"
+#import "FoodType.h"
 
 static const NSString *baseURL = @"http://robot.boulderfoodrescue.org";
 static  NSString *tokenDefaultsKey = @"com.BFR.logintokenkey";
@@ -162,6 +163,27 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
     }
     failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         completion(error);
+    }];
+}
+
++ (void) getFoodTypesWithCompletion:(void(^)(NSError *error, NSArray *types))completion{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSString * user = [[NSUserDefaults standardUserDefaults] objectForKey:currentUserDefaultsKey];
+    NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:tokenDefaultsKey];
+    NSString *url = [NSString stringWithFormat:@"%@/food_types.json?volunteer_email=%@&volunteer_token=%@", baseURL, user, token];
+    
+    [manager POST:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSMutableArray *types = [NSMutableArray new];
+        for (NSDictionary *d in responseObject){
+            [types addObject:[[FoodType alloc] initWithDictionary:d]];
+        }
+        completion(nil, types);
+    }
+    failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        completion(error, nil);
     }];
 }
 
