@@ -186,7 +186,7 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
     
     
     [manager PUT:url parameters:log.rawDictionary success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        if (responseObject[@"error"]){
+        if (![responseObject[@"error"] isEqualToNumber:@0]){
             completion([NSError errorWithDomain:@"asdfasdf" code:-1203 userInfo:@{NSLocalizedDescriptionKey:responseObject[@"message"]}]);
             return;
         }
