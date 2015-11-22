@@ -53,7 +53,6 @@
 @property (strong, nonatomic) IBOutlet UITextView *pickupFoodLbl;
 @property (strong, nonatomic) IBOutlet UITextView *pickupContactLbl;
 @property (strong, nonatomic) IBOutlet UITextView *pickupExitLbl;
-@property (weak, nonatomic) IBOutlet UIButton *weighFoodButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *dropoffNameLbl;
 @property (strong, nonatomic) IBOutlet UITextView *dropoffAddressLbl;

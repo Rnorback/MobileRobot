@@ -13,6 +13,7 @@
 @interface WeighVC ()
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *textFields;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *methodSelector;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -21,9 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.title = @"Weight Info";
     self.navigationController.navigationBarHidden = false;
-    
+    [self.scrollView setContentInset:UIEdgeInsetsMake(-104,0,0,0)];
 }
 
 - (void)didReceiveMemoryWarning {
