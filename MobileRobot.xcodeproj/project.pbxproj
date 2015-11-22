@@ -112,11 +112,11 @@
 				93EBF1291C00FBBA00166E83 /* AppDelegate.h */,
 				93EBF12A1C00FBBA00166E83 /* AppDelegate.m */,
 				93EBF1511C00FBFF00166E83 /* Views */,
+				A09A1FC71C012091004E789F /* Models */,
 				93EBF1561C00FEB100166E83 /* Webservices */,
 				93EBF1521C00FC0E00166E83 /* Images */,
 				93EBF1371C00FBBA00166E83 /* Info.plist */,
 				93EBF1261C00FBBA00166E83 /* Supporting Files */,
-				A09A1FC71C012091004E789F /* models */,
 			);
 			path = MobileRobot;
 			sourceTree = "<group>";
@@ -166,7 +166,7 @@
 			name = Webservices;
 			sourceTree = "<group>";
 		};
-		A09A1FC71C012091004E789F /* models */ = {
+		A09A1FC71C012091004E789F /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				A09A1FC11C011BD1004E789F /* Route.h */,
@@ -176,7 +176,7 @@
 				A09A1FC81C012B7D004E789F /* Location.h */,
 				A09A1FC91C012B7D004E789F /* Location.m */,
 			);
-			name = models;
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

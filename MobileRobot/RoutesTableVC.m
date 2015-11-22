@@ -7,8 +7,8 @@
 //
 
 #import "RoutesTableVC.h"
-
 #import "WebServices.h"
+#import "Route.h"
 
 @interface RoutesTableVC ()
 @property NSMutableArray *routes;
@@ -54,6 +54,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"routeCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    Route *route = self.routes[indexPath.row];
+    
+    cell.textLabel.numberOfLines = 2;
+    
+    NSString *donor = route.donors[0];
+    NSString *recipient = route.recipients[0];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ to %@",donor, recipient];
+    
+    
     
     return cell;
 }

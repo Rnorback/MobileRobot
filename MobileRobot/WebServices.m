@@ -44,7 +44,7 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
     }];
 }
 
-+ (void) listRoutesForCurrentUserWithCompletion:(void(^)(NSError* error, NSArray *routes))completion{
++ (void) listRoutesForCurrentUserWithCompletion:(void(^)(NSError* error, NSArray<Route*> *routes))completion{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
