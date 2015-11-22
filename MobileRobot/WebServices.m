@@ -97,19 +97,37 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
     NSString *url = [NSString stringWithFormat:@"%@/logs/%@.json?volunteer_email=%@&volunteer_token=%@", baseURL, log.logId, user, token];
     
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        __block int reqs = 0;
         Location *donor = [Location new];
         donor.locationId = responseObject[@"log"][@"donor_id"];
         [log.parentRoute.donors addObject:donor];
+        reqs ++;
+        [self fillLocation:donor withCompletion:^(NSError *error, Location *location) {
+            if (!error){
+                reqs--;
+            }
+            if (reqs == 0) {
+                completion(nil, log);
+            }
+        }];
         
         for (NSString *str in responseObject[@"log"][@"recipient_ids"]){
             Location *recipient = [Location new];
             recipient.locationId = str;
+            
             [log.parentRoute.recipients addObject:recipient];
+            reqs++;
+            [self fillLocation:recipient withCompletion:^(NSError *error, Location *location) {
+                reqs--;
+                if (reqs==0){
+                    completion(nil, log);
+                }
+            }];
         }
         
         [log inflateWithDictionary:responseObject];
         
-        completion(nil, log);
+//        completion(nil, log);
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         completion(error, nil);
