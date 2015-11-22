@@ -44,10 +44,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *difficultyLbl;
 
 @property (weak, nonatomic) IBOutlet UILabel *pickupNameLbl;
+@property (strong, nonatomic) IBOutlet UITextView *pickupAddressLbl;
+@property (strong, nonatomic) IBOutlet UITextView *pickupEntryLbl;
+@property (strong, nonatomic) IBOutlet UITextView *pickupEquipmentLbl;
+@property (strong, nonatomic) IBOutlet UITextView *pickupFoodLbl;
+@property (strong, nonatomic) IBOutlet UITextView *pickupContactLbl;
+@property (strong, nonatomic) IBOutlet UITextView *pickupExitLbl;
 @property (weak, nonatomic) IBOutlet UIButton *weighFoodButton;
 
-
 @property (weak, nonatomic) IBOutlet UILabel *dropoffNameLbl;
+@property (strong, nonatomic) IBOutlet UITextView *dropoffAddressLbl;
+@property (strong, nonatomic) IBOutlet UITextView *dropoffEntryLbl;
+@property (strong, nonatomic) IBOutlet UITextView *dropoffFoodLbl;
+@property (strong, nonatomic) IBOutlet UITextView *dropoffContactLbl;
+@property (strong, nonatomic) IBOutlet UITextView *dropoffExitLbl;
 
 @end
 
@@ -59,12 +69,12 @@
     self.navigationController.navigationBarHidden = false;
 }
 
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     Log* log = self.route.logs[0];
     
     self.titleLbl.text = [NSString stringWithFormat:self.titleLbl.text, self.route.recipients[0].name];
-    self.titleLbl.numberOfLines = 0;
-    [self.titleLbl sizeToFit];
+    self.titleLbl.numberOfLines = 2;
+    //[self.titleLbl sizeToFit];
 
     self.pickupLbl.text = [NSString stringWithFormat:self.pickupLbl.text, log.pickupStartTime, log.pickupEndTime];
     
@@ -79,10 +89,24 @@
     self.difficultyLbl.text = log.difficulty;
     
     Location *pickup = self.route.donors[0];
-    self.pickupNameLbl.text = pickup.name;
+    self.pickupNameLbl.text = [NSString stringWithFormat:@"%@ (Donor)",pickup.name];
+    [self.pickupNameLbl setFont:[UIFont boldSystemFontOfSize:16.0]];
+    self.pickupAddressLbl.text = pickup.address;
+    self.pickupEntryLbl.text = pickup.entryInfo;
+    self.pickupEquipmentLbl.text = pickup.equiptmentStorageInfo;
+    self.pickupFoodLbl.text = pickup.foodStorageInfo;
+    self.pickupContactLbl.text = pickup.onsiteContactInfo;
+    self.pickupExitLbl.text = pickup.exitInfo;
     
     Location *dropoff = self.route.recipients[0];
-    self.dropoffNameLbl.text = dropoff.name;
+    self.dropoffNameLbl.text = [NSString stringWithFormat:@"%@ (Reciepient)",dropoff.name];
+    [self.dropoffNameLbl setFont:[UIFont boldSystemFontOfSize:16.0]];
+    self.dropoffAddressLbl.text = dropoff.address;
+    self.dropoffEntryLbl.text = dropoff.entryInfo;
+    self.dropoffFoodLbl.text = dropoff.foodStorageInfo;
+    self.dropoffContactLbl.text = dropoff.onsiteContactInfo;
+    self.dropoffExitLbl.text = dropoff.exitInfo;
+    
 }
 - (IBAction)weighFoodButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"weighSegue" sender:self.route.logs[0]];
