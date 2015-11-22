@@ -11,6 +11,9 @@
 #import "Log.h"
 #import "Location.h"
 #import "WeighVC.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
+#import "WebServices.h"
+#import "SVProgressHUD.h"
 
 @implementation UILabel (dynamicSizeMeWidth)
 
@@ -69,6 +72,61 @@
     [super viewDidLoad];
     
     [self.tableView setContentInset:UIEdgeInsetsMake(-64,0,0,0)];
+    self.navigationController.navigationBarHidden = false;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
+}
+- (void)doneButtonPressed:(id)sender{
+    Log * log = self.route.logs[0];
+//    BOOL hasWeight = NO;
+//    for (NSString* partKey in [log.rawDictionary[@"log_parts"] allKeys]){
+//        if ([partKey containsString:@"new"]){
+//            hasWeight = YES;
+//        }
+//    }
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Finish Trip" message:@"How long did this take?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // post log
+        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+        f.numberStyle = NSNumberFormatterDecimalStyle;
+        NSNumber *n = [f numberFromString:[alert textFields][0].text];
+        if (!n){
+            [[alert textFields][0] becomeFirstResponder];
+            return;
+        }
+        [log markHoursSpent:n];
+        [WebServices postLog:log withCompletion:^(NSError *error) {
+            if (error){
+                [SVProgressHUD showErrorWithStatus:@"An error occured. Please try again later"];
+            }
+        }];
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Hours spent";
+        ok.enabled = NO;
+        
+        textField.bk_shouldChangeCharactersInRangeWithReplacementStringBlock = ^BOOL(UITextField *field, NSRange r, NSString *s){
+            NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+            f.numberStyle = NSNumberFormatterDecimalStyle;
+            NSNumber *n = [f numberFromString:[field.text stringByReplacingCharactersInRange:r withString:s]];
+            
+            if (n){
+                ok.enabled = YES;
+            }
+            else {
+                ok.enabled = NO;
+            }
+            return YES;
+        };
+    }];
+    
+    [alert addAction:ok];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

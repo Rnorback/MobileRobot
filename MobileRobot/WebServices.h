@@ -10,10 +10,13 @@
 #import <Foundation/Foundation.h>
 
 @class Route;
+@class Log;
 
 @interface WebServices : NSObject
-    + (void) loginWithUsername:(NSString*)username andPassword:(NSString*)password withCompletion:(void (^)(NSError *error))completion;
++ (void) loginWithUsername:(NSString*)username andPassword:(NSString*)password withCompletion:(void (^)(NSError *error))completion;
 
-    + (void) listRoutesForCurrentUserWithCompletion:(void(^)(NSError* error, NSArray<Route*> *routes))completion;
++ (void) listRoutesForCurrentUserWithCompletion:(void(^)(NSError* error, NSArray<Route*> *routes))completion;
++ (void) postLog:(Log *)log withCompletion:(void(^)(NSError *error))completion;
+
 
 @end
