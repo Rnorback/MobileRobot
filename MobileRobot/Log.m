@@ -45,7 +45,7 @@
     
 }
 
-- (void) addQuantity:(NSNumber*)qty OType:(FoodType*)type{
+- (void) addQuantity:(NSNumber*)qty OfType:(FoodType*)type{
     NSMutableDictionary * parts = [NSMutableDictionary dictionaryWithDictionary:self.rawDictionary[@"logParts"]];
     [parts setObject:@{@"food_type_id":type.foodTypeId, @"description":@"", @"weight":qty, @"count":@""}  forKey:[NSString stringWithFormat:@"new%ld", (long)[[NSDate date] timeIntervalSince1970]]];
     [_rawDictionary setObject:parts forKey:@"logParts"];
@@ -54,6 +54,12 @@
 - (void) markHoursSpent:(NSNumber*)hoursSpent{
     NSMutableDictionary *log = [NSMutableDictionary dictionaryWithDictionary:self.rawDictionary[@"log"]];
     [log setObject:hoursSpent forKey:@"hours_spent"];
+    [_rawDictionary setObject:log forKey:@"log"];
+}
+
+- (void) addWeighMethod:(NSNumber*)methodId{
+    NSMutableDictionary *log = [NSMutableDictionary dictionaryWithDictionary:self.rawDictionary[@"log"]];
+    [log setObject:methodId forKey:@"scale_type_id"];
     [_rawDictionary setObject:log forKey:@"log"];
 }
 
