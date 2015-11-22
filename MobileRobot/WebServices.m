@@ -103,9 +103,7 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
         [log.parentRoute.donors addObject:donor];
         reqs ++;
         [self fillLocation:donor withCompletion:^(NSError *error, Location *location) {
-            if (!error){
-                reqs--;
-            }
+            reqs--;
             if (reqs == 0) {
                 completion(nil, log);
             }
