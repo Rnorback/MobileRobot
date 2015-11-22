@@ -6,8 +6,11 @@
 //  Copyright © 2015 Adam Shiemke. All rights reserved.
 //
 
+@class Log;
 #import <UIKit/UIKit.h>
 
 @interface WeighVC : UIViewController
+
+@property Log* log;
 
 @end

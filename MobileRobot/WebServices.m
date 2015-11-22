@@ -137,7 +137,7 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
     
     NSString * user = [[NSUserDefaults standardUserDefaults] objectForKey:currentUserDefaultsKey];
     NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:tokenDefaultsKey];
-    NSString *url = [NSString stringWithFormat:@"%@/location/%@.json?volunteer_email=%@&volunteer_token=%@", baseURL, location.locationId, user, token];
+    NSString *url = [NSString stringWithFormat:@"%@/locations/%@.json?volunteer_email=%@&volunteer_token=%@", baseURL, location.locationId, user, token];
     
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         [location inflateWithDictionary:responseObject];
@@ -165,22 +165,22 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
     }];
 }
 
-+ (void) startLog:(Log *)log withCompletion:(void(^)(NSError *error))completion{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    NSString * user = [[NSUserDefaults standardUserDefaults] objectForKey:currentUserDefaultsKey];
-    NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:tokenDefaultsKey];
-    NSString *url = [NSString stringWithFormat:@"%@/logs/%@/take.json?volunteer_email=%@&volunteer_token=%@", baseURL, log.logId, user, token];
-    
-    [manager POST:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        completion(nil);
-    }
-    failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        completion(error);
-    }];
-    
-}
+//+ (void) startLog:(Log *)log withCompletion:(void(^)(NSError *error))completion{
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    NSString * user = [[NSUserDefaults standardUserDefaults] objectForKey:currentUserDefaultsKey];
+//    NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:tokenDefaultsKey];
+//    NSString *url = [NSString stringWithFormat:@"%@/logs/%@/take.json?volunteer_email=%@&volunteer_token=%@", baseURL, log.logId, user, token];
+//    
+//    [manager POST:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+//        completion(nil);
+//    }
+//    failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+//        completion(error);
+//    }];
+//    
+//}
 
 @end

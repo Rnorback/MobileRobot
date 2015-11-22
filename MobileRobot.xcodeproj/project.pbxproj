@@ -24,6 +24,7 @@
 		A09A1FC31C011BD1004E789F /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = A09A1FC21C011BD1004E789F /* Route.m */; };
 		A09A1FC61C012070004E789F /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = A09A1FC51C012070004E789F /* Log.m */; };
 		A09A1FCA1C012B7D004E789F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = A09A1FC91C012B7D004E789F /* Location.m */; };
+		A09A1FCD1C015A5C004E789F /* FoodType.m in Sources */ = {isa = PBXBuildFile; fileRef = A09A1FCC1C015A5C004E789F /* FoodType.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,8 @@
 		A09A1FC51C012070004E789F /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		A09A1FC81C012B7D004E789F /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		A09A1FC91C012B7D004E789F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		A09A1FCB1C015A5C004E789F /* FoodType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodType.h; sourceTree = "<group>"; };
+		A09A1FCC1C015A5C004E789F /* FoodType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodType.m; sourceTree = "<group>"; };
 		CA81D0B9D5D531C0C533E50D /* Pods-MobileRobot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileRobot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileRobot/Pods-MobileRobot.debug.xcconfig"; sourceTree = "<group>"; };
 		F4AB28DFC9D3DB973C9A5978 /* libPods-MobileRobot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobileRobot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -175,6 +178,8 @@
 				A09A1FC51C012070004E789F /* Log.m */,
 				A09A1FC81C012B7D004E789F /* Location.h */,
 				A09A1FC91C012B7D004E789F /* Location.m */,
+				A09A1FCB1C015A5C004E789F /* FoodType.h */,
+				A09A1FCC1C015A5C004E789F /* FoodType.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93EBF14C1C00FBF700166E83 /* RoutesTableVC.m in Sources */,
+				A09A1FCD1C015A5C004E789F /* FoodType.m in Sources */,
 				A09A1FC31C011BD1004E789F /* Route.m in Sources */,
 				93EBF1551C00FEA500166E83 /* WebServices.m in Sources */,
 				A09A1FC61C012070004E789F /* Log.m in Sources */,

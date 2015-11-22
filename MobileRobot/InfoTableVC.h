@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Route;
 
-@interface InfoTableVC : UIViewController
-
+@interface InfoTableVC : UITableViewController
+@property Route* route;
 @end

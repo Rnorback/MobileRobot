@@ -8,7 +8,10 @@
 
 #import "RoutesTableVC.h"
 #import "WebServices.h"
+
 #import "Route.h"
+#import "Location.h"
+#import "InfoTableVC.h"
 
 @interface RoutesTableVC ()
 @property NSMutableArray *routes;
@@ -18,12 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [WebServices listRoutesForCurrentUserWithCompletion:^(NSError *error, NSArray *routes) {
         if (error){
@@ -49,67 +46,45 @@
     return self.routes.count;
 }
 
-
+- (NSString *) textForRow:(int)row{
+    Route *route = self.routes[row];
+    Location *donor = route.donors[0];
+    Location *recipient = route.recipients[0];
+    return [NSString stringWithFormat:@"%@ to %@", donor.name, recipient.name];
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"routeCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    Route *route = self.routes[indexPath.row];
     
-    cell.textLabel.numberOfLines = 2;
-    
-    NSString *donor = route.donors[0];
-    NSString *recipient = route.recipients[0];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ to %@",donor, recipient];
-    
-    
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.text = [self textForRow:(int)indexPath.row];
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize size = [cell.textLabel.text sizeWithFont:cell.textLabel.font
+                       constrainedToSize:CGSizeMake(cell.textLabel.bounds.size.width, MAXFLOAT)
+                           lineBreakMode:NSLineBreakByWordWrapping];
+    [cell.textLabel setFrame:CGRectMake(0 , 0 , size.width , size.height)];
     
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *text = [self textForRow:(int)indexPath.row];
+    CGSize textSize = [text sizeWithFont:[UIFont systemFontOfSize:16.0f] constrainedToSize:CGSizeMake(self.view.bounds.size.width-50, 20000) lineBreakMode:NSLineBreakByWordWrapping];
+    float heightToAdd = MIN(textSize.height+20, 100.0f); //Some fix height is returned if height is small or change it to MAX(textSize.height, 150.0f); // whatever best fits for you
+    return heightToAdd;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"infoSegue" sender:self.routes[indexPath.row]];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    ((InfoTableVC*)segue.destinationViewController).route = sender;
 }
-*/
 
 @end

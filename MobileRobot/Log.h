@@ -8,13 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, ReasonWhyNotZero) {
+    ReasonWhyNotZeroNoFood = 1,
+    ReasonWhyNotZeroShiftDidntHappen = 2,
+};
+
 @class Route;
 
 @interface Log : NSObject
 
+@property NSMutableDictionary *rawDictionary;
+
 @property NSString *logId;
 
 @property (weak) Route *parentRoute;
+
+@property NSString* dayOfWeek;
+@property NSString* frequency;
+@property NSString* hilliness;
+@property NSString* expectedWeight;
+@property NSString* notes;
+@property NSString* pickupStartTime;
+@property NSString* pickupEndTime;
+@property NSString* difficulty;
+
+//@property BOOL irregular;
 
 
 - (void) inflateWithDictionary:(NSDictionary*)d;
