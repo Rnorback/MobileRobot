@@ -151,7 +151,8 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
 
 + (void) postLog:(Log *)log withCompletion:(void(^)(NSError *error))completion{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
@@ -159,10 +160,37 @@ static  NSString *currentUserDefaultsKey = @"com.BFR.loginuserkey";
     NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:tokenDefaultsKey];
     NSString *url = [NSString stringWithFormat:@"%@/logs/%@.json?volunteer_email=%@&volunteer_token=%@", baseURL, log.logId, user, token];
     
-    [manager POST:url parameters:log.rawDictionary success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    // some quick data cleanup:
+    NSMutableDictionary *clean = [NSMutableDictionary dictionaryWithDictionary:log.rawDictionary[@"log_parts"]];
+    for (NSString *key in [clean allKeys]){
+        NSMutableDictionary *part = [NSMutableDictionary dictionaryWithDictionary:clean[key]];
+        if ([part[@"weight"] isKindOfClass:[NSNull class]]){
+            part[@"weight"] = @"";
+        }
+        if ([part[@"count"] isKindOfClass:[NSNull class]]){
+            part[@"count"] = @"";
+        }
+        if ([part[@"description"] isKindOfClass:[NSNull class]]){
+            part[@"description"] = @"";
+        }
+        clean[key] = part;
+    }
+    [log.rawDictionary[@"log"] removeObjectForKey:@"volunteer_names"];
+    [log.rawDictionary setObject:clean forKey:@"log_parts"];
+    
+    NSData *d = [NSJSONSerialization dataWithJSONObject:log.rawDictionary options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
+    NSLog(@"JSON:\n\n\n%@",  jsonStr);
+    
+    
+    
+    
+    [manager PUT:url parameters:log.rawDictionary success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         completion(nil);
     }
     failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSString *errorStr = [[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", errorStr);
         completion(error);
     }];
 }
