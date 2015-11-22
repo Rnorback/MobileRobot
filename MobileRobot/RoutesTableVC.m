@@ -12,6 +12,7 @@
 #import "Route.h"
 #import "Location.h"
 #import "InfoTableVC.h"
+#import "Log.h"
 
 @interface RoutesTableVC ()
 @property NSMutableArray *routes;
@@ -69,6 +70,14 @@
                        constrainedToSize:CGSizeMake(cell.textLabel.bounds.size.width, MAXFLOAT)
                            lineBreakMode:NSLineBreakByWordWrapping];
     [cell.textLabel setFrame:CGRectMake(0 , 0 , size.width , size.height)];
+    Log *log = ((Route*)self.routes[indexPath.row]).logs[0];
+    
+    if ([log.rawDictionary[@"log"][@"complete"] isEqualToNumber:@1]){
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+    }
+    else {
+        cell.textLabel.textColor = [UIColor darkTextColor];
+    }
     
     return cell;
 }
